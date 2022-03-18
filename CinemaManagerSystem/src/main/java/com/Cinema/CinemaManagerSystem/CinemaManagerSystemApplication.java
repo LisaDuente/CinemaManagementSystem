@@ -9,7 +9,8 @@ public class CinemaManagerSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaManagerSystemApplication.class, args);
 	}
-	//erkan cicek java
+	// erkan cicek java
 	// Igor Skarbinski
+	// Toros Kutlu
 
 }
