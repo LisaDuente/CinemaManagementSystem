@@ -9,5 +9,6 @@ public class CinemaManagerSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaManagerSystemApplication.class, args);
 	}
+	//erkan cicek java
 
 }
