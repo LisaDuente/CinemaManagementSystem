@@ -12,5 +12,6 @@ public class CinemaManagerSystemApplication {
 	// erkan cicek java
 	// Igor Skarbinski
 	// Toros Kutlu
+	// Lisa Duente
 
 }
