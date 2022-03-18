@@ -10,5 +10,6 @@ public class CinemaManagerSystemApplication {
 		SpringApplication.run(CinemaManagerSystemApplication.class, args);
 	}
 	//erkan cicek java
+	// Igor Skarbinski
 
 }
