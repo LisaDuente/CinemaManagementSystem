@@ -11,7 +11,10 @@ public class CinemaManagerSystemApplication {
 		ApplicationContext context = SpringApplication.run(CinemaManagerSystemApplication.class, args);
 		MovieDAO movieDAO = context.getBean(MovieDAO.class);
 
-		movieDAO.insertNewMovie("Batman", "horror", "2h 23min", "Batman kills riddler");
+		//movieDAO.deleteMovie(1);
+		movieDAO.insertNewMovie("Spiderman","Action","120 min","Pow pow Spiderman");
+		Movie movie = movieDAO.downloadOneMovie(2);
+		System.out.println(movie.toString());
 	}
 	// erkan cicek java
 	// Igor Skarbinski
