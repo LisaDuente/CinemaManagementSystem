@@ -23,9 +23,20 @@ public class MovieDAO {
         int result = jdcbTemplate.update(query, name, genre, duration, description);
 
         if(result > 0){
-            System.out.println(result + "movie added to database");
+            System.out.println(result + " movie added to database");
             this.error = "movie added to database";
         }
+    }
+
+    public void deleteMovie(int id){
+
+        String query = "DELETE FROM movie WHERE movie_ID = ?;";
+
+    }
+
+    public Movie downloadMovie(String id){
+        String query = "SELECT * FROM movie WHERE movie_id = ?";
+        Movie movie = this.jdcbTemplate.queryForObject(query)
     }
 
     public String getError() {
