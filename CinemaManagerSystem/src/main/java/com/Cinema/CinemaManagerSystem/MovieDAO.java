@@ -46,7 +46,6 @@ public class MovieDAO {
      * @param id int for movie_id of movie we want to delete
      */
     public void deleteMovie(int id){
-
         String query = "DELETE FROM movie WHERE movie_ID = ?";
         int result = jdcbTemplate.update(query, id);
 
