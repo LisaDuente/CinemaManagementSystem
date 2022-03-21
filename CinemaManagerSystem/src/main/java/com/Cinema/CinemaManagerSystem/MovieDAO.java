@@ -21,6 +21,13 @@ public class MovieDAO {
         this.jdcbTemplate = new JdbcTemplate();
     }
 
+    /**
+     * method to insert a new Movie into the database
+     * @param name String - name of movie
+     * @param genre String - genre
+     * @param duration String - duration in minutes and hours
+     * @param description String - not longer than 255 characters
+     */
     public void insertNewMovie(String name, String genre, String duration, String description){
 
         //should we insert null here to generate a new id with auto_increment in MySQL?
@@ -49,8 +56,7 @@ public class MovieDAO {
         }
     }
 
-    //everyone needs to create a database with User + Pass from properties,
-    //don't forget to set all privileges
+
     public Movie downloadOneMovie(int id){
         String query = "SELECT * FROM movie WHERE movie_id = ?";
         Movie movie = this.jdcbTemplate.queryForObject(query, new RowMapper<Movie>() {

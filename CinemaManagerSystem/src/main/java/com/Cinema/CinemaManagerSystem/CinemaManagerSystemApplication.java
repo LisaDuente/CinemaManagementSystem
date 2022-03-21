@@ -19,6 +19,11 @@ public class CinemaManagerSystemApplication {
 		/*
 		Movie movie = movieDAO.downloadOneMovie(2);
 		System.out.println(movie.toString());
+		 */
+		ArrayList<Movie> movieTest = movieDAO.downloadAllMovies();
+		for(Movie movie : movieTest){
+			System.out.println(movie.toString());
+		}
 	}
 	// erkan cicek java
 	// Igor Skarbinski
