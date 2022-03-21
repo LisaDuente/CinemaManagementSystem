@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 public class CinemaManagerSystemApplication {
 
@@ -12,7 +14,9 @@ public class CinemaManagerSystemApplication {
 		MovieDAO movieDAO = context.getBean(MovieDAO.class);
 
 		//movieDAO.deleteMovie(1);
-		movieDAO.insertNewMovie("Spiderman","Action","120 min","Pow pow Spiderman");
+		//movieDAO.insertNewMovie("AdamAndEve","Romance","90 min","Don't eat that apple.");
+		//movieDAO.insertNewMovie("Batman","Action / Horror","220 min","Riddler gets devastated!");
+		/*
 		Movie movie = movieDAO.downloadOneMovie(2);
 		System.out.println(movie.toString());
 	}
