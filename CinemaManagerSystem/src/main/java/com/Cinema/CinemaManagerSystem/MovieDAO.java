@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.*;
+//everyone needs to create a database with User + Pass from properties,
+//don't forget to set all privileges
 @Repository
 public class MovieDAO {
     @Autowired
@@ -19,6 +21,13 @@ public class MovieDAO {
         this.jdcbTemplate = new JdbcTemplate();
     }
 
+    /**
+     * method to insert a new Movie into the database
+     * @param name String - name of movie
+     * @param genre String - genre
+     * @param duration String - duration in minutes and hours
+     * @param description String - not longer than 255 characters
+     */
     public void insertNewMovie(String name, String genre, String duration, String description){
 
         //should we insert null here to generate a new id with auto_increment in MySQL?
@@ -32,6 +41,10 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * method to delete a movie from database
+     * @param id int for movie_id of movie we want to delete
+     */
     public void deleteMovie(int id){
         String query = "DELETE FROM movie WHERE movie_ID = ?";
         int result = jdcbTemplate.update(query, id);
@@ -42,8 +55,7 @@ public class MovieDAO {
         }
     }
 
-    //everyone needs to create a database with User + Pass from properties,
-    //don't forget to set all privileges
+
     public Movie downloadOneMovie(int id){
         String query = "SELECT * FROM movie WHERE movie_id = ?";
         Movie movie = this.jdcbTemplate.queryForObject(query, new RowMapper<Movie>() {
@@ -60,6 +72,28 @@ public class MovieDAO {
             }
         }, id);
         return movie;
+    }
+
+    public ArrayList<Movie> downloadAllMovies(){
+        String query = "SELECT * FROM movie";
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        List<Map<String,Object>> rows = jdcbTemplate.queryForList(query);
+
+        for(Map<String, Object> row : rows){
+            Movie movie = new Movie(
+                    (int) (long) row.get("movie_id"),
+                    String.valueOf(row.get("movie_name")),
+                    String.valueOf(row.get("genre")),
+                    String.valueOf(row.get("duration")),
+                    String.valueOf(row.get("movie_description")),
+                    true);
+            movies.add(movie);
+        }
+        Collections.sort(movies,(m1,m2) -> {
+            return m1.getName().compareTo(m2.getName());
+        });
+
+        return movies;
     }
 
     public String getError() {
