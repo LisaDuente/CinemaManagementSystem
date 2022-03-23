@@ -6,6 +6,7 @@ public class Movie {
     private String name;
     private String genre;
     private String duration;
+    private String shortDescription;
     private String movieDescription;
     private boolean isAvailable;
 
@@ -13,11 +14,12 @@ public class Movie {
         this.isAvailable = true;
     }
 
-    public Movie(int id, String name, String genre, String duration, String movieDescription, boolean available){
+    public Movie(int id, String name, String genre, String duration,String shortDescription, String movieDescription, boolean available){
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.duration = duration;
+        this.shortDescription = shortDescription;
         this.movieDescription = movieDescription;
         this.isAvailable = available;
     }
@@ -29,6 +31,7 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
                 ", duration='" + duration + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
                 ", movieDescription='" + movieDescription + '\'' +
                 ", isAvailable=" + isAvailable +
                 '}';

@@ -66,6 +66,7 @@ public class MovieDAO {
                         rs.getString("movie_name"),
                         rs.getString("genre"),
                         rs.getString("duration"),
+                        rs.getString("short_description"),
                         rs.getString("movie_description"),
                         true);
                 return innerMovie;
@@ -85,6 +86,7 @@ public class MovieDAO {
                     String.valueOf(row.get("movie_name")),
                     String.valueOf(row.get("genre")),
                     String.valueOf(row.get("duration")),
+                    String.valueOf(row.get("short_description")),
                     String.valueOf(row.get("movie_description")),
                     true);
             movies.add(movie);
