@@ -103,17 +103,15 @@ public class MovieDAO {
      */
     public Movie newlyAddedMovie(){ //Erkan
         String query = "SELECT MAX(movie_id) FROM movie";
-        Movie temp = jdcbTemplate.queryForObject(query, new RowMapper<Movie>() {
-            @Override
-            public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Movie recentMovie = new Movie(rs.getInt("movie_id"),
-                        rs.getString("movie_name"),
-                        rs.getString("genre"),
-                        rs.getString("duration"),
-                        rs.getString("movie_description"),
-                        true);
-                return recentMovie;
-            }
+        Movie temp = jdcbTemplate.queryForObject(query, (rs, rowNum) -> {
+            Movie movie = new Movie(rs.getInt("movie_id"),
+                    rs.getString("movie_name"),
+                    rs.getString("genre"),
+                    rs.getString("duration"),
+                    rs.getString("short_description"),
+                    rs.getString("movie_description"),
+                    true);
+            return movie;
         });
         return temp;
     }
