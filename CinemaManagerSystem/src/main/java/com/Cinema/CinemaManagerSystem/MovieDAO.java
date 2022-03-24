@@ -98,6 +98,25 @@ public class MovieDAO {
         return movies;
     }
 
+    /**
+     * Method to download the movie with the highest id, meaning its new and should be on our frontpage as a recommendation
+     */
+    public Movie newlyAddedMovie(){ //Erkan
+        String query = "SELECT MAX(movie_id) FROM movie";
+        Movie temp = jdcbTemplate.queryForObject(query, (rs, rowNum) -> {
+            Movie movie = new Movie(rs.getInt("movie_id"),
+                    rs.getString("movie_name"),
+                    rs.getString("genre"),
+                    rs.getString("duration"),
+                    rs.getString("short_description"),
+                    rs.getString("movie_description"),
+                    true);
+            return movie;
+        });
+        return temp;
+    }
+
+
     public String getError() {
         return error;
     }
