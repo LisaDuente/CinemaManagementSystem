@@ -28,10 +28,10 @@ public class MovieDAO {
      * @param duration String - duration in minutes and hours
      * @param description String - not longer than 255 characters
      */
-    public void insertNewMovie(String name, String genre, String duration, String description){
+    public void insertNewMovie(String name, String genre, String duration, String description, String shortDescription){
 
         //should we insert null here to generate a new id with auto_increment in MySQL?
-        String query = "INSERT INTO movie VALUES(null,?,?,?,?);";
+        String query = "INSERT INTO movie VALUES(null,?,?,?,?,?);";
 
         int result = jdcbTemplate.update(query, name, genre, duration, description);
 
