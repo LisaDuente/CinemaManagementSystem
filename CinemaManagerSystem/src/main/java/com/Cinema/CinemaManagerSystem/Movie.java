@@ -69,6 +69,8 @@ public class Movie {
         this.duration = duration;
     }
 
+    public String getShortDescription() {return this.shortDescription;}
+
     public String getMovieDescription() {
         return movieDescription;
     }

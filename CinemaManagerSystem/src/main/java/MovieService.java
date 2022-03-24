@@ -1,9 +1,11 @@
 import com.Cinema.CinemaManagerSystem.Movie;
 import com.Cinema.CinemaManagerSystem.MovieDAO;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 public class MovieService {
@@ -12,18 +14,27 @@ public class MovieService {
     Movie movie;
     ArrayList<Movie> movies;
 
-    public void insertMovie(Movie movie){dao.insertNewMovie(movie.getName(), movie.getGenre(), movie.getDuration(), movie.getMovieDescription());}
+    public void insertMovie(String name, String genre, String duration, String shortDescription, String movieDescription){dao.insertNewMovie(name, genre, duration, shortDescription, movieDescription);}
 
-    public void deleteMovie(Movie deleteMovie){dao.deleteMovie(deleteMovie.getId());}
+    public void deleteMovie(int idDelete){dao.deleteMovie(idDelete);}
 
-    public Movie downloadOneMovie(int id){
+    public String downloadOneMovie(int id){
+        Gson gson = new Gson();
+
         movie = dao.downloadOneMovie(id);
-        return movie;
+        String movieString = gson.toJson(movie);
+        return movieString;
     }
 
-    public ArrayList<Movie> downloadAllMovies(){
+    public ArrayList<String> downloadAllMovies(){
         movies = dao.downloadAllMovies();
-        return movies;
+        ArrayList<String> movieList = new ArrayList<>();
+        Gson gson = new Gson();
+        for (Movie movie: movies){
+            String movieString = gson.toJson(movie);
+            movieList.add(movieString);
+        }
+        return movieList;
     }
 
 }
