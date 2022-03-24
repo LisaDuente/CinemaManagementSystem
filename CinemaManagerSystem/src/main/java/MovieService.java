@@ -26,15 +26,11 @@ public class MovieService {
         return movieString;
     }
 
-    public ArrayList<String> downloadAllMovies(){
+    public String downloadAllMovies(){
         movies = dao.downloadAllMovies();
-        ArrayList<String> movieList = new ArrayList<>();
         Gson gson = new Gson();
-        for (Movie movie: movies){
-            String movieString = gson.toJson(movie);
-            movieList.add(movieString);
-        }
-        return movieList;
+        String movieListString = gson.toJson(movies);
+        return movieListString;
     }
 
 }

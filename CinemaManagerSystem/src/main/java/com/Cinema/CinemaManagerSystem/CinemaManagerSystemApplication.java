@@ -1,5 +1,6 @@
 package com.Cinema.CinemaManagerSystem;
 
+import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -24,6 +25,10 @@ public class CinemaManagerSystemApplication {
 		for(Movie movie : movieTest){
 			System.out.println(movie.toString());
 		}
+
+		Gson gson = new Gson();
+		String movieListString = gson.toJson(movieTest);
+		System.out.println(movieListString);
 	}
 	// erkan cicek java
 	// Igor Skarbinski

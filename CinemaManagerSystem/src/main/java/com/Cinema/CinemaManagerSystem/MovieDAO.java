@@ -98,6 +98,8 @@ public class MovieDAO {
         return movies;
     }
 
+ 
+
     /**
      * Method to download the movie with the highest id, meaning its new and should be on our frontpage as a recommendation
      */
