@@ -28,8 +28,10 @@ CREATE TABLE `movie` (
   `genre` varchar(50) DEFAULT NULL,
   `duration` varchar(50) DEFAULT NULL,
   `movie_description` varchar(255) DEFAULT NULL,
+  `short_description` varchar(255) DEFAULT NULL,
+  `picture_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`movie_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +40,7 @@ CREATE TABLE `movie` (
 
 LOCK TABLES `movie` WRITE;
 /*!40000 ALTER TABLE `movie` DISABLE KEYS */;
+INSERT INTO `movie` VALUES (1,'Batman','horror','2h 23min','Batman kills riddler',NULL,NULL);
 /*!40000 ALTER TABLE `movie` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-18 11:34:02
+-- Dump completed on 2022-03-25  6:04:59
