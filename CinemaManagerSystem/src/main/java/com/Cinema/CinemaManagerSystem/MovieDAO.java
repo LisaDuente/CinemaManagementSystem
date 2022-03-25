@@ -68,12 +68,18 @@ public class MovieDAO {
                         rs.getString("duration"),
                         rs.getString("short_description"),
                         rs.getString("movie_description"),
+                        rs.getString("picture_path"),
                         true);
                 return innerMovie;
             }
         }, id);
         return movie;
     }
+
+    /**
+     * downloads all movies from the database
+     * @return ArrayList<Movie>
+     */
 
     public ArrayList<Movie> downloadAllMovies(){
         String query = "SELECT * FROM movie";
@@ -88,6 +94,7 @@ public class MovieDAO {
                     String.valueOf(row.get("duration")),
                     String.valueOf(row.get("short_description")),
                     String.valueOf(row.get("movie_description")),
+                    String.valueOf(row.get("picture_path")),
                     true);
             movies.add(movie);
         }
@@ -112,6 +119,7 @@ public class MovieDAO {
                     rs.getString("duration"),
                     rs.getString("short_description"),
                     rs.getString("movie_description"),
+                    rs.getString("picture_path"),
                     true);
             return movie;
         });

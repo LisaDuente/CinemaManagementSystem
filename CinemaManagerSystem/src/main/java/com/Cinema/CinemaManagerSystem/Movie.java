@@ -8,19 +8,21 @@ public class Movie {
     private String duration;
     private String shortDescription;
     private String movieDescription;
+    private String picturePath;
     private boolean isAvailable;
 
     public Movie(){
         this.isAvailable = true;
     }
 
-    public Movie(int id, String name, String genre, String duration,String shortDescription, String movieDescription, boolean available){
+    public Movie(int id, String name, String genre, String duration,String shortDescription, String movieDescription, String picturePath, boolean available){
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.duration = duration;
         this.shortDescription = shortDescription;
         this.movieDescription = movieDescription;
+        this.picturePath = picturePath;
         this.isAvailable = available;
     }
 
@@ -33,6 +35,7 @@ public class Movie {
                 ", duration='" + duration + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", movieDescription='" + movieDescription + '\'' +
+                ", picturePath='" + picturePath + '\'' +
                 ", isAvailable=" + isAvailable +
                 '}';
     }
@@ -85,5 +88,13 @@ public class Movie {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 }
