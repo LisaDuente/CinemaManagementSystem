@@ -14,13 +14,16 @@ public class MovieService {
     Movie movie;
     ArrayList<Movie> movies;
 
-    public void insertMovie(String name, String genre, String duration, String shortDescription, String movieDescription){dao.insertNewMovie(name, genre, duration, shortDescription, movieDescription);}
+    public void insertMovie(String name, String genre, String duration, String shortDescription, String movieDescription) {
+        dao.insertNewMovie(name, genre, duration, shortDescription, movieDescription);
+    }
 
-    public void deleteMovie(int idDelete){dao.deleteMovie(idDelete);}
+    public void deleteMovie(int idDelete){
+        dao.deleteMovie(idDelete);
+    }
 
     public String downloadOneMovie(int id){
         Gson gson = new Gson();
-
         movie = dao.downloadOneMovie(id);
         String movieString = gson.toJson(movie);
         return movieString;
