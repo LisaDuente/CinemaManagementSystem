@@ -32,7 +32,6 @@ public class MovieController {
         return movieService.downloadOneMovie(id);
     }
 
-
     @GetMapping("/downloadAllMovies")
     public String downloadAllMovies(){
         return movieService.downloadAllMovies();
