@@ -1,3 +1,5 @@
+package com.Cinema.CinemaManagerSystem;
+
 import com.Cinema.CinemaManagerSystem.Movie;
 import com.Cinema.CinemaManagerSystem.MovieDAO;
 import com.google.gson.Gson;
@@ -14,8 +16,8 @@ public class MovieService {
     Movie movie;
     ArrayList<Movie> movies;
 
-    public void insertMovie(String name, String genre, String duration, String shortDescription, String movieDescription) {
-        dao.insertNewMovie(name, genre, duration, shortDescription, movieDescription);
+    public void insertMovie(String name, String genre, String duration, String movieDescription, String shortDescription, String path) {
+        dao.insertNewMovie(name, genre, duration, movieDescription, shortDescription, path);
     }
 
     public void deleteMovie(int idDelete){
@@ -34,6 +36,12 @@ public class MovieService {
         Gson gson = new Gson();
         String movieListString = gson.toJson(movies);
         return movieListString;
+    }
+
+    public String downloadMostRecent(){
+        movie = dao.newlyAddedMovie();
+        Gson gson = new Gson();
+        return gson.toJson(movie);
     }
 
 }

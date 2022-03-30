@@ -20,8 +20,9 @@ class MovieDAOTest {
         String duration = "120min";
         String description = "Beware of the Spiderman! Bitten by a spider Peter Parker goes on a big adventure!";
         String shortDescription = "Baw Baw Spiderman";
+        String path = "blub";
         //when
-        this.test.insertNewMovie(name,genre,duration,description, shortDescription);
+        this.test.insertNewMovie(name,genre,duration,description, shortDescription,path);
 
         //result
         assertEquals("movie added to database",this.test.getError());

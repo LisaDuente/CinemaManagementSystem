@@ -28,12 +28,12 @@ public class MovieDAO {
      * @param duration String - duration in minutes and hours
      * @param description String - not longer than 255 characters
      */
-    public void insertNewMovie(String name, String genre, String duration, String description, String shortDescription){
+    public void insertNewMovie(String name, String genre, String duration, String description, String shortDescription, String path){
 
         //should we insert null here to generate a new id with auto_increment in MySQL?
-        String query = "INSERT INTO movie VALUES(null,?,?,?,?,?);";
+        String query = "INSERT INTO movie VALUES(null,?,?,?,?,?,?);";
 
-        int result = jdcbTemplate.update(query, name, genre, duration, description);
+        int result = jdcbTemplate.update(query, name, genre, duration, description,shortDescription,path);
 
         if(result > 0){
             System.out.println(result + " movie added to database");
@@ -105,13 +105,13 @@ public class MovieDAO {
         return movies;
     }
 
- 
+
 
     /**
      * Method to download the movie with the highest id, meaning its new and should be on our frontpage as a recommendation
      */
     public Movie newlyAddedMovie(){ //Erkan
-        String query = "SELECT MAX(movie_id) FROM movie";
+        String query = "SELECT * FROM movie WHERE movie_ID = (SELECT MAX(movie_id) FROM movie);";
         Movie temp = jdcbTemplate.queryForObject(query, (rs, rowNum) -> {
             Movie movie = new Movie(rs.getInt("movie_id"),
                     rs.getString("movie_name"),
