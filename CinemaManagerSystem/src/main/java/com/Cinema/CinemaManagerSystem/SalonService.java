@@ -13,17 +13,17 @@ public class SalonService { // Toros
     Salon salon;
     ArrayList<Salon> salons;
 
-    public void insertSalon(String salonID, int cinemaID, int salonRows, String salonSeats) {
+    public void insertSalon(int salonID, int cinemaID, int salonRows, String salonSeats) {
         salonDAO.insertNewSalon(salonID, cinemaID, salonRows, salonSeats);
     }
 
-    public void deleteSalon(String idDelete) {
-        salonDAO.deleteSalon(idDelete);
+    public void deleteSalonByID(int idDelete) {
+        salonDAO.deleteSalonByID(idDelete);
     }
 
-    public String downloadOneSalon(String salonID) {
+    public String downloadOneSalonByID(int salonID) {
         Gson gson = new Gson();
-        salon = salonDAO.downloadOneSalon(salonID);
+        salon = salonDAO.downloadOneSalonByID(salonID);
         String salonString = gson.toJson(salon);
         return salonString;
     }
