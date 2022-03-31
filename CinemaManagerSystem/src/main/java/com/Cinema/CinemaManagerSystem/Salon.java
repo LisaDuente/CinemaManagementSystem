@@ -1,7 +1,7 @@
 package com.Cinema.CinemaManagerSystem;
 
 public class Salon { // Toros
-    private String salonID; // varchar(20) PK
+    private int salonID; // int
     private int cinemaID; // int UN
 
     // TODO: make a smart function to compute nr of seats, salon rows, salon seats.
@@ -12,7 +12,7 @@ public class Salon { // Toros
 
     }
 
-    public Salon(String salonID, int cinemaID, int salonRows, String salonSeats) {
+    public Salon(int salonID, int cinemaID, int salonRows, String salonSeats) {
         this.salonID = salonID;
         this.cinemaID = cinemaID;
         this.salonRows = salonRows;
@@ -29,11 +29,11 @@ public class Salon { // Toros
                 '}';
     }
 
-    public String getSalonID() {
+    public int getSalonID() {
         return salonID;
     }
 
-    public void setSalonID(String salonID) {
+    public void setSalonID(int salonID) {
         this.salonID = salonID;
     }
 

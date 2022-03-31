@@ -27,7 +27,7 @@ public class SalonDAO { // Toros
      * @param salonRows  salon_row in salon_info in cinema database
      * @param salonSeats seat in salon_info in cinema database
      */
-    public void insertNewSalon(String salonID, int cinemaID, int salonRows, String salonSeats) {
+    public void insertNewSalon(int salonID, int cinemaID, int salonRows, String salonSeats) {
 
         //should we insert null here to generate a new id with auto_increment in MySQL? Salon_ID is a varchar though.
         String query = "INSERT INTO salon VALUES(?, ?, ?, ?);";
@@ -45,13 +45,13 @@ public class SalonDAO { // Toros
      *
      * @param salonID salon_ID in salon in cinema database
      */
-    public void deleteSalon(String salonID) {
+    public void deleteSalonByID(int salonID) {
         String query = "DELETE FROM salon WHERE salon_ID = ?;";
         int result = jdbcTemplate.update(query, salonID);
 
         if (result > 0) {
             System.out.println(result + "salon deleted from database");
-            this.error = "movie deleted from database";
+            this.error = "employee deleted from database";
         }
     }
 
@@ -61,7 +61,7 @@ public class SalonDAO { // Toros
      * @param salonID salon_ID in salon in cinema database
      * @return salon object
      */
-    public Salon downloadOneSalon(String salonID) {
+    public Salon downloadOneSalonByID(int salonID) {
         String query = "SELECT * FROM salon WHERE salon_ID = ?;";
         Salon salon = this.jdbcTemplate.queryForObject(query, new RowMapper<Salon>() {
             @Override
@@ -72,7 +72,7 @@ public class SalonDAO { // Toros
                         //* @param cinemaID cinema_ID in salon in cinema database
                         //* @param salonRows salon_row in salon_info in cinema database
                         //* @param salonSeats seat in salon_info in cinema database
-                        rs.getString("salon_ID"),
+                        rs.getInt("salon_ID"),
                         rs.getInt("cinema_ID"),
                         rs.getInt("salon_row"),
                         rs.getString("seat")

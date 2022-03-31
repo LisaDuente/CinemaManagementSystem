@@ -19,18 +19,18 @@ public class SalonController { // Toros
     //String salonID, int cinemaID, int salonRows, String salonSeats
 
     @GetMapping("/insertSalon")
-    public void insertSalon(@RequestParam(value = "salonID", defaultValue = "noSalonID") String salonID, @RequestParam(value = "cinemaID", defaultValue = "-1") int cinemaID, @RequestParam(value = "salonRows", defaultValue = "-1") int salonRows, @RequestParam(value = "salonSeats", defaultValue = "noSalonSeats") String salonSeats) {
+    public void insertSalon(@RequestParam(value = "salonID", defaultValue = "-1") int salonID, @RequestParam(value = "cinemaID", defaultValue = "-1") int cinemaID, @RequestParam(value = "salonRows", defaultValue = "-1") int salonRows, @RequestParam(value = "salonSeats", defaultValue = "noSalonSeats") String salonSeats) {
         salonService.insertSalon(salonID, cinemaID, salonRows, salonSeats);
     }
 
     @GetMapping("/deleteSalonByID")
-    public void deleteSalon(@RequestParam(value = "salonID", defaultValue = "noSalonID") String salonID){
-        salonService.deleteSalon(salonID);
+    public void deleteSalon(@RequestParam(value = "salonID", defaultValue = "-1") int salonID){
+        salonService.deleteSalonByID(salonID);
     }
 
     @GetMapping("/downloadOneSalon")
-    public String downloadOneSalon(@RequestParam(value = "salonID", defaultValue = "noSalonID") String salonID){
-        return salonService.downloadOneSalon(salonID);
+    public String downloadOneSalon(@RequestParam(value = "salonID", defaultValue = "-1") int salonID){
+        return salonService.downloadOneSalonByID(salonID);
     }
 
     // necessary ??
