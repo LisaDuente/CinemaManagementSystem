@@ -15,7 +15,7 @@ public class EmployeeService { // Toros
 
     // for reference:
     // int employeeID, String employeeName, String employeeTel, String employeeEmail
-    public void insertEmployee(int employeeID, String employeeName, String employeeTel, String employeeEmail) {
+    public void insertNewEmployee(int employeeID, String employeeName, String employeeTel, String employeeEmail) {
         employeeDAO.insertNewEmployee(employeeID, employeeName, employeeTel, employeeEmail);
     }
 
