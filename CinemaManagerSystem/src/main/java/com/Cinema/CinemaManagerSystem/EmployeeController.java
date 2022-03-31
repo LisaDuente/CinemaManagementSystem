@@ -25,22 +25,22 @@ public class EmployeeController {  // Toros
     // downloadOneEmployeeByID
 
     @GetMapping("/insertNewEmployee")
-    public void insertEmployee(@RequestParam(value = "employeeID", defaultValue = "-1") int employeeID, @RequestParam(value = "employeeName", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employeeTel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employeeEmail", defaultValue = "noEmployeeEmail") String employeeEmail) {
-        employeeService.insertEmployee(employeeID, employeeName, employeeTel, employeeEmail);
+    public void insertNewEmployee(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
+        employeeService.insertNewEmployee(employeeID, employeeName, employeeTel, employeeEmail);
     }
 
     @GetMapping("/deleteEmployeeByID")
-    public void deleteEmployeeByID(@RequestParam(value = "employeeID", defaultValue = "-1") int employeeID) {
+    public void deleteEmployeeByID(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID) {
         employeeService.deleteEmployeeByID(employeeID);
     }
 
     @GetMapping("/downloadOneEmployeeByName")
-    public String downloadOneEmployeeByName(@RequestParam(value = "employeeID", defaultValue = "-1") int employeeID, @RequestParam(value = "employeeName", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employeeTel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employeeEmail", defaultValue = "noEmployeeEmail") String employeeEmail) {
+    public String downloadOneEmployeeByName(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
         return employeeService.downloadOneEmployeeByName(employeeName);
     }
 
     @GetMapping("/downloadOneEmployeeByID")
-    public String downloadOneEmployeeByID(@RequestParam(value = "employeeID", defaultValue = "-1") int employeeID, @RequestParam(value = "employeeName", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employeeTel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employeeEmail", defaultValue = "noEmployeeEmail") String employeeEmail) {
+    public String downloadOneEmployeeByID(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
         return employeeService.downloadOneEmployeeByID(employeeID);
     }
 
