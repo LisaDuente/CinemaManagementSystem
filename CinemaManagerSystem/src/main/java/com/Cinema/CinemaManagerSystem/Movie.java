@@ -1,5 +1,8 @@
 package com.Cinema.CinemaManagerSystem;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Movie {
 
     private int id;

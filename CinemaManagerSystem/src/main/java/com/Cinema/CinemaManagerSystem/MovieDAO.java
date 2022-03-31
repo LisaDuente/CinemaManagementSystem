@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import com.Cinema.CinemaManagerSystem.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,8 +58,9 @@ public class MovieDAO {
 
 
     public Movie downloadOneMovie(int id){
+
         String query = "SELECT * FROM movie WHERE movie_id = ?";
-        Movie movie = this.jdcbTemplate.queryForObject(query, new RowMapper<Movie>() {
+        return this.jdcbTemplate.queryForObject(query, new RowMapper<Movie>() {
             @Override
             public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Movie innerMovie = new Movie(
@@ -73,7 +75,6 @@ public class MovieDAO {
                 return innerMovie;
             }
         }, id);
-        return movie;
     }
 
     /**
@@ -83,7 +84,7 @@ public class MovieDAO {
 
     public ArrayList<Movie> downloadAllMovies(){
         String query = "SELECT * FROM movie";
-        ArrayList<Movie> movies = new ArrayList<Movie>();
+        ArrayList<Movie> movies = new ArrayList<>();
         List<Map<String,Object>> rows = jdcbTemplate.queryForList(query);
 
         for(Map<String, Object> row : rows){
@@ -98,9 +99,7 @@ public class MovieDAO {
                     true);
             movies.add(movie);
         }
-        Collections.sort(movies,(m1,m2) -> {
-            return m1.getName().compareTo(m2.getName());
-        });
+        movies.sort(Comparator.comparing(Movie::getName));
 
         return movies;
     }
