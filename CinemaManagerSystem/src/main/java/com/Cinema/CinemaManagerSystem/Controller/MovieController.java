@@ -1,5 +1,6 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.Controller;
 
+import com.Cinema.CinemaManagerSystem.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,9 +11,9 @@ public class MovieController {
 
 
     @Autowired
-    com.Cinema.CinemaManagerSystem.MovieService movieService;
+    MovieService movieService;
 
-    public MovieController(com.Cinema.CinemaManagerSystem.MovieService movieService){
+    public MovieController(MovieService movieService){
         this.movieService = movieService;
     }
 

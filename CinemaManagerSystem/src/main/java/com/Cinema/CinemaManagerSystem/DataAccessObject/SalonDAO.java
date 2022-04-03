@@ -1,15 +1,12 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
+import com.Cinema.CinemaManagerSystem.Models.Salon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 @Repository
-public class SalonDAO { // Toros
+public class SalonDAO { // Toros || ERKAN
     @Autowired
     private JdbcTemplate jdbcTemplate;
     private String error;
@@ -30,7 +27,7 @@ public class SalonDAO { // Toros
     public void insertNewSalon(int salonID, int cinemaID, int salonRows, String salonSeats) {
 
         //should we insert null here to generate a new id with auto_increment in MySQL? Salon_ID is a varchar though.
-        String query = "INSERT INTO salon VALUES(?, ?, ?, ?);";
+        String query = "INSERT INTO salon VALUES(?, ?);";
 
         int result = jdbcTemplate.update(query, salonID, cinemaID, salonRows, salonSeats);
 
@@ -61,32 +58,15 @@ public class SalonDAO { // Toros
      * @param salonID salon_ID in salon in cinema database
      * @return salon object
      */
-    public Salon downloadOneSalonByID(int salonID) {
-        String query = "SELECT * FROM salon WHERE salon_ID = ?;";
-        Salon salon = this.jdbcTemplate.queryForObject(query, new RowMapper<Salon>() {
-            @Override
-            public Salon mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Salon innerSalon = new Salon(
-                        //String salonID, int cinemaID, int salonRows, String salonSeats
-                        //* @param salonID salon_ID in salon in cinema database
-                        //* @param cinemaID cinema_ID in salon in cinema database
-                        //* @param salonRows salon_row in salon_info in cinema database
-                        //* @param salonSeats seat in salon_info in cinema database
-                        rs.getInt("salon_ID"),
-                        rs.getInt("cinema_ID"),
-                        rs.getInt("salon_row"),
-                        rs.getString("seat")
-                );
-                return innerSalon;
-            }
-        }, salonID);
-        return salon;
+    public Salon downloadOneSalonByID(int salonID, int cinemaID) {
+        String sql = "select salon_info.salon_ID, cinema.cinema_id, salon_info.salon_row, seat from salon_info join cinema where salon_info.salon_ID = ? and cinema.cinema_id = ?";
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Salon(
+                rs.getInt("salon_id"),
+                rs.getInt("cinema_id"),
+                rs.getInt("salon_row"),
+                rs.getInt("seat")
+        ), salonID, cinemaID);
     }
-
-    // necessary ??
-    //public ArrayList<Salon> downloadAllSalons(){
-    //
-    //}
 
     public String getError() {
         return error;

@@ -1,12 +1,9 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
+import com.Cinema.CinemaManagerSystem.Models.MovieSchedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @Repository
 public class MovieScheduleDAO {
@@ -26,10 +23,10 @@ public class MovieScheduleDAO {
      * @param movieDate String - which date movie starts
      * @param movieId int - which movie
      */
-    public void insertMovieSchedule(String salonId, String movieTime, String movieDate, int movieId){
-        String query = "INSERT INTO movie_schedule VALUES(?,?,?,?);";
+    public void insertMovieSchedule(int salonId, String movieTime, String movieDate, int movieId, String array){
+        String query = "INSERT INTO movie_schedule VALUES(?,?,?,?,?);";
 
-        int result = jdcbTemplate.update(query, salonId, movieTime, movieDate, movieId);
+        int result = jdcbTemplate.update(query, salonId, movieTime, movieDate, movieId, array);
 
         if(result > 0){
             System.out.println(result + " movieSchedule added to database");
@@ -54,18 +51,15 @@ public class MovieScheduleDAO {
 
     public MovieSchedule downloadOneMovieSchedule(int movieId){
         String query = "SELECT * FROM movie_schedule WHERE movie_ID = ?";
-        MovieSchedule movieSchedule = this.jdcbTemplate.queryForObject(query, new RowMapper<MovieSchedule>() {
-            @Override
-            public MovieSchedule mapRow(ResultSet rs, int rowNum) throws SQLException {
-                MovieSchedule innerMovieSchedule = new MovieSchedule(
-                        rs.getString("salon_ID"),
-                        rs.getString("movie_time"),
-                        rs.getString("movie_date"),
-                        rs.getInt("movie_ID"),
-                        true);
-                return innerMovieSchedule;
-            }
+        return this.jdcbTemplate.queryForObject(query, (rs, rowNum) -> {
+            int[][]arrayEmpty = new int[10][10];
+            return new MovieSchedule(
+                    rs.getInt("salon_ID"),
+                    rs.getString("movie_time"),
+                    rs.getString("movie_date"),
+                    rs.getInt("movie_ID"),
+                    arrayEmpty,
+                    true);
         }, movieId);
-        return movieSchedule;
     }
 }

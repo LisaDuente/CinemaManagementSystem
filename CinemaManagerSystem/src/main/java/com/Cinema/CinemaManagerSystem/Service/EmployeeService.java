@@ -1,5 +1,7 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.Service;
 
+import com.Cinema.CinemaManagerSystem.Models.Employee;
+import com.Cinema.CinemaManagerSystem.DataAccessObject.EmployeeDAO;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

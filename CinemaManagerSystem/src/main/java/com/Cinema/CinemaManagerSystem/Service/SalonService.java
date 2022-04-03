@@ -1,5 +1,7 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.Service;
 
+import com.Cinema.CinemaManagerSystem.Models.Salon;
+import com.Cinema.CinemaManagerSystem.DataAccessObject.SalonDAO;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class SalonService { // Toros
+public class SalonService { // Toros ||ERKAN
     @Autowired
     SalonDAO salonDAO;
     Salon salon;
@@ -21,15 +23,9 @@ public class SalonService { // Toros
         salonDAO.deleteSalonByID(idDelete);
     }
 
-    public String downloadOneSalonByID(int salonID) {
+    public String downloadOneSalonByID(int salonID, int cinemaId) {
         Gson gson = new Gson();
-        salon = salonDAO.downloadOneSalonByID(salonID);
-        String salonString = gson.toJson(salon);
-        return salonString;
+        salon = salonDAO.downloadOneSalonByID(salonID, cinemaId);
+        return gson.toJson(salon);
     }
-
-    // necessary ??
-    //public String downloadAllSalons(){
-    //
-    //}
 }

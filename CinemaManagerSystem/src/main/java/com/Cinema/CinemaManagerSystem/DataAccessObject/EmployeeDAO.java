@@ -1,6 +1,6 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
-import jdk.jshell.execution.JdiExecutionControl;
+import com.Cinema.CinemaManagerSystem.Models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

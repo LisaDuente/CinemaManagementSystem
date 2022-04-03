@@ -1,5 +1,6 @@
 package com.Cinema.CinemaManagerSystem;
 
+import com.Cinema.CinemaManagerSystem.DataAccessObject.MovieDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.Models;
 
 import org.springframework.stereotype.Component;
 
