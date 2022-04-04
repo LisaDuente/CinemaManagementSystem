@@ -39,6 +39,13 @@ public class EmployeeService { // Toros
         return employeeString;
     }
 
+    public String downloadAllEmployees(){
+        employees = employeeDAO.downloadAllEmployees();
+        Gson gson = new Gson();
+        String employeeListString = gson.toJson(employees);
+        return employeeListString;
+    }
+
     // necessary ??
     //public String downloadAllSalons(){
     //
