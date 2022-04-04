@@ -45,6 +45,10 @@ public class EmployeeController {  // Toros
         return employeeService.downloadOneEmployeeByID(employeeID);
     }
 
+    @GetMapping("/downloadAllEmployees")
+    public String downloadAllEmployees(){
+        return employeeService.downloadAllEmployees();
+    }
 
 
 

@@ -1,6 +1,7 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
 import com.Cinema.CinemaManagerSystem.Models.Employee;
+import com.Cinema.CinemaManagerSystem.Models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -8,6 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class EmployeeDAO {  // Toros
@@ -79,6 +84,25 @@ public class EmployeeDAO {  // Toros
             }
         }, employeeID);
         return employee;
+    }
+
+    public ArrayList<Employee> downloadAllEmployees(){
+        String query = "SELECT * FROM employees";
+        ArrayList<Employee> employees = new ArrayList<>();
+        List<Map<String,Object>> rows = jdbcTemplate.queryForList(query);
+
+        for(Map<String, Object> row : rows){
+            Employee employee = new Employee(
+                    (int) (long) row.get("employee_id"),
+                    String.valueOf(row.get("employee_name")),
+                    String.valueOf(row.get("employee_tel")),
+                    String.valueOf(row.get("employee_email"))
+                    );
+            employees.add(employee);
+        }
+        //employees.sort(Comparator.comparing(Employee::getName));
+
+        return employees;
     }
 
     // necessary ??
