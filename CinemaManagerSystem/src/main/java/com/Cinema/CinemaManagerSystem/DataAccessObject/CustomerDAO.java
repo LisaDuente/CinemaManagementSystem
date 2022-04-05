@@ -1,10 +1,10 @@
-package com.Cinema.CinemaManagerSystem;
+package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
+import com.Cinema.CinemaManagerSystem.Models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
