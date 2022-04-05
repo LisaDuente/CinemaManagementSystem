@@ -32,9 +32,7 @@ public class SalonController { // Toros
     public String downloadOneSalon(@RequestParam(value = "salonID", defaultValue = "-1") int salonID, @RequestParam(value = "cinemaID") int cinemaId){
         return salonService.downloadOneSalonByID(salonID, cinemaId);
     }
-//<<<<<<< HEAD
 
-//=======
 /*
     @GetMapping("/test")
     public String test(@RequestParam("id")int id){
