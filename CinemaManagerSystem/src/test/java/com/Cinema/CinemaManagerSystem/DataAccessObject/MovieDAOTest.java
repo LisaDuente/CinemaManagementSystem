@@ -1,32 +1,44 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovieDAOTest {
+class MovieDAOTest { // Toros
 
-    /*
     @Test
-    void insertNewMovie("Trust No One", "Documentary", "1h 20min", "Mystery...", "Open ended...", "BLOB") {
-        /*
-        public void insertNewMovie(String name, String genre, String duration, String description, String shortDescription, String path){
-
-        //should we insert null here to generate a new id with auto_increment in MySQL?
+    void insertNewMovie() {
+        //setup
         String query = "INSERT INTO movie VALUES(null,?,?,?,?,?,?);";
+        // (String name, String genre, String duration, String description, String shortDescription, String path)
+        String name = "test01";
+        String genre = "test02";
+        String duration = "test03";
+        String description = "test04";
+        String shortDescription = "test05";
+        String path = "test06";
+        Mockito.when(jdbcTemplateMock.update(query, name, genre, duration, description, shortDescription, path)).thenReturn(1);
 
-        int result = jdcbTemplate.update(query, name, genre, duration, description,shortDescription,path);
+        // action
+        int i = jdbcTemplateMock.update(query, name, genre, duration, description, shortDescription, path);
 
-        if(result > 0){
-            System.out.println(result + " movie added to database");
-            this.error = "movie added to database";
-        }
+        // result
+        assertEquals(1, i);
+        Mockito.verify(jdbcTemplateMock).update(query, name, genre, duration, description, shortDescription, path);
     }
 
-        //assertEquals(result > 0, );
+    @Mock
+    JdbcTemplate jdbcTemplateMock;
+
+    @BeforeEach
+    void setUp() {
+
     }
-    */
 
     @Test
     void deleteMovie() {
