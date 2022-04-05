@@ -2,9 +2,7 @@ package com.Cinema.CinemaManagerSystem.Controller;
 
 import com.Cinema.CinemaManagerSystem.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeController {  // Toros
@@ -25,12 +23,12 @@ public class EmployeeController {  // Toros
     // downloadOneEmployeeByName
     // downloadOneEmployeeByID
 
-    @GetMapping("/insertNewEmployee")
+    @PostMapping("/insertNewEmployee")
     public void insertNewEmployee(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
         employeeService.insertNewEmployee(employeeID, employeeName, employeeTel, employeeEmail);
     }
 
-    @GetMapping("/deleteEmployeeByID")
+    @DeleteMapping ("/deleteEmployeeByID")
     public void deleteEmployeeByID(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID) {
         employeeService.deleteEmployeeByID(employeeID);
     }
