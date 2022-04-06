@@ -48,6 +48,15 @@ public class EmployeeController {  // Toros
         return employeeService.downloadAllEmployees();
     }
 
+    @PostMapping("/updateEmployee")
+    public void updateMovie(@RequestParam(value = "id", defaultValue = "0")int id,
+                            @RequestParam(value = "name", defaultValue = "noName")String name,
+                            @RequestParam(value = "tel", defaultValue = "noTel")String tel,
+                            @RequestParam(value = "mail", defaultValue = "noMail")String mail
+                            ){
+        employeeService.updateEmployee(id, name, tel, mail);
+    }
+
 
 
 
