@@ -24,7 +24,10 @@ public class EmployeeController {  // Toros
     // downloadOneEmployeeByID
 
     @PostMapping("/insertNewEmployee")
-    public void insertNewEmployee(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
+    public void insertNewEmployee(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID,
+                                  @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName,
+                                  @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel,
+                                  @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
         employeeService.insertNewEmployee(employeeID, employeeName, employeeTel, employeeEmail);
     }
 
@@ -56,32 +59,4 @@ public class EmployeeController {  // Toros
                             ){
         employeeService.updateEmployee(id, name, tel, mail);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -13,7 +13,7 @@ public class MovieScheduleController {
     public MovieScheduleController(MovieScheduleService movieScheduleService) {
         this.movieScheduleService = movieScheduleService;}
 
-    @GetMapping("/insertMovieSchedule")
+    @PostMapping("/insertMovieSchedule")
     public void insertMovieSchedule(@RequestParam(value = "salonId", defaultValue = "NoSalonId") int salonId,
                                    @RequestParam(value = "movieTime", defaultValue = "NoMovieTime") String movieTime,
                                    @RequestParam(value = "movieDate", defaultValue = "noMovieDate") String movieDate,
