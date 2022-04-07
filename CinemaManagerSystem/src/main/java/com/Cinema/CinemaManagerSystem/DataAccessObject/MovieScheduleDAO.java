@@ -54,7 +54,7 @@ public class MovieScheduleDAO {
     }
 
     public void deleteMovieSchedule(int salonID, String movieTime, String movieDate){
-        String query = "DELETE FROM movie_schedule WHERE movie_ID = ? AND salon_ID = ? AND movie_time = ? AND movie_date = ?";
+        String query = "DELETE FROM movie_schedule WHERE salon_ID = ? AND movie_time = ? AND movie_date = ?";
         int result = jdbcTemplate.update(query, salonID,movieTime,movieDate);
 
         if(result > 0){
