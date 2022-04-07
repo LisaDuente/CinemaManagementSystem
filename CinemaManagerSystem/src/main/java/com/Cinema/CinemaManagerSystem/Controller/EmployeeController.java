@@ -34,7 +34,7 @@ public class EmployeeController {  // Toros
     }
 
     @GetMapping("/downloadOneEmployeeByName")
-    public String downloadOneEmployeeByName(@RequestParam(value = "employee_ID", defaultValue = "-1") int employeeID, @RequestParam(value = "employee_name", defaultValue = "noEmployeeName") String employeeName, @RequestParam(value = "employee_tel", defaultValue = "noEmployeeTel") String employeeTel, @RequestParam(value = "employee_email", defaultValue = "noEmployeeEmail") String employeeEmail) {
+    public String downloadOneEmployeeByName(@RequestParam(value = "employeeName", defaultValue = "-1") String employeeName) {
         return employeeService.downloadOneEmployeeByName(employeeName);
     }
 
