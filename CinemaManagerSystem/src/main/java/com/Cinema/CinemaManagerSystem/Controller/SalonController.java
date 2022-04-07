@@ -34,14 +34,12 @@ public class SalonController { // Toros
     public String downloadOneSalon(@RequestParam(value = "salonID", defaultValue = "-1") int salonID, @RequestParam(value = "cinemaID") int cinemaId){
         return salonService.downloadOneSalonByID(salonID, cinemaId);
     }
-
 /*
     @GetMapping("/test")
     public String test(@RequestParam("id")int id){
         Gson gson = new Gson();
         return gson.toJson(salonService.test(id));
     }
->>>>>>> 3539e7954f44ac87cd34ae31ca96a0ad34d68bf9
 
  */
 
