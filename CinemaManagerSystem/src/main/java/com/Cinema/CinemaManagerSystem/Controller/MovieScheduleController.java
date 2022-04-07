@@ -49,4 +49,9 @@ public class MovieScheduleController {
             @RequestParam("date") String date){
         return movieScheduleService.downloadOneMovieSchedule(salonID, movieID, time,date);
     }
+
+    @GetMapping("/downloadWholeMovieSchedule")
+    public String downloadWholeMovieSchedule(){
+        return movieScheduleService.downloadWholeMovieSchedule();
+    }
 }

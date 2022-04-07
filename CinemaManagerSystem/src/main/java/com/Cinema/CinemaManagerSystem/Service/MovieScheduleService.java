@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 
 @Service
 public class MovieScheduleService {
@@ -30,5 +32,11 @@ public class MovieScheduleService {
 
     public String updateMovieSchedule(String array, int salonID, int movieID, String time, String date){
         return dao.updateMovieScheduleById(array, salonID, movieID, time, date);
+    }
+
+    public String downloadWholeMovieSchedule(){
+        Gson gson = new Gson();
+        ArrayList<MovieSchedule> arrayList= dao.downloadWholeMovieSchedule();
+        return gson.toJson(arrayList);
     }
 }
