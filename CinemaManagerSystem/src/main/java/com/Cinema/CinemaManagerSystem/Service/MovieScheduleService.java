@@ -24,6 +24,10 @@ public class MovieScheduleService {
         dao.deleteMovieSchedule(movieId);
     }
 
+    public void deleteMovieScheduleAllParameters( int salonID, String movieTime, String movieDate){
+        dao.deleteMovieSchedule(salonID,movieTime,movieDate);
+    }
+
     public String downloadOneMovieSchedule(int salonID, int movieID, String time, String date){
         Gson gson = new Gson();
         movieSchedule = dao.downloadOneMovieSchedule(salonID,movieID, time, date);

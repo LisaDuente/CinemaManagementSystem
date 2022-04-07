@@ -2,10 +2,7 @@ package com.Cinema.CinemaManagerSystem.Controller;
 
 import com.Cinema.CinemaManagerSystem.Service.MovieScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MovieScheduleController {
@@ -28,6 +25,14 @@ public class MovieScheduleController {
     @GetMapping("/deleteMovieSchedule")
     public void deleteMovieSchedule(@RequestParam(value = "movieId", defaultValue = "-1") int movieId){
         movieScheduleService.deleteMovieSchedule(movieId);
+    }
+
+    @DeleteMapping("/deleteMovieAllParameters")
+    public void deleteMovieAllParameters(@RequestParam(value = "salonID", defaultValue = "-1")int salonID,
+                                         @RequestParam(value = "movieTime", defaultValue = "-1")String movieTime,
+                                         @RequestParam(value = "movieDate", defaultValue = "-1")String movieDate){
+        this.movieScheduleService.deleteMovieScheduleAllParameters(salonID,movieTime,movieDate);
+
     }
 
     @PostMapping("/updateMovieSchedule")

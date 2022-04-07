@@ -53,6 +53,16 @@ public class MovieScheduleDAO {
         }
     }
 
+    public void deleteMovieSchedule(int salonID, String movieTime, String movieDate){
+        String query = "DELETE FROM movie_schedule WHERE movie_ID = ? AND salon_ID = ? AND movie_time = ? AND movie_date = ?";
+        int result = jdbcTemplate.update(query, salonID,movieTime,movieDate);
+
+        if(result > 0){
+            System.out.println(result + " movieSchedule deleted from database");
+            this.error = "movieSchedule deleted from database";
+        }
+    }
+
     public String updateMovieScheduleById(String array, int salonID, int movieID, String time, String date){
         String query = "update movie_schedule set movie_schedule.seatsOfArrayForMovie = ? where salon_ID = ? and movie_ID = ? and movie_time = ? and movie_date = ?";
         int result = jdbcTemplate.update(query, array, salonID, movieID, time, date);
