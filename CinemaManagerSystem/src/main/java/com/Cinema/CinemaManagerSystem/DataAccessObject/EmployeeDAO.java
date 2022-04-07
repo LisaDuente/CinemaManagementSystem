@@ -69,6 +69,7 @@ public class EmployeeDAO {  // Toros
         return employee;
     }
 
+    //TODO: something is wrong error code 500
     public Employee downloadOneEmployeeByID(int employeeID) {
         String query = "SELECT * FROM employees WHERE employee_ID = ?;";
         Employee employee = this.jdbcTemplate.queryForObject(query, new RowMapper<Employee>() {
@@ -109,6 +110,18 @@ public class EmployeeDAO {  // Toros
     //public ArrayList<Employee> downloadAllEmployees(){
     //
     //}
+
+    public void updateEmployee(int id,String name, String tel, String mail){
+
+        String query = "UPDATE employees SET employee_name = ?, employee_tel = ?, employee_email = ? WHERE employee_ID = ?;";
+
+        int result = jdbcTemplate.update(query, name, tel, mail, id);
+
+        if(result > 0){
+            System.out.println(result + " employee updated in database");
+            this.error = "employee updated in database";
+        }
+    }
 
     public String getError() {
         return error;

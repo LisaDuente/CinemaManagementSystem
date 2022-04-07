@@ -46,6 +46,10 @@ public class EmployeeService { // Toros
         return employeeListString;
     }
 
+    public void updateEmployee(int id,String name, String tel, String mail){
+        employeeDAO.updateEmployee(id,name, tel, mail);
+    }
+
     // necessary ??
     //public String downloadAllSalons(){
     //
