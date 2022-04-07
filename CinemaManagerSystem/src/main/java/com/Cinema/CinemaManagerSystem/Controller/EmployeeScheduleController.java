@@ -24,7 +24,7 @@ public class EmployeeScheduleController {
         employeeScheduleService.insertNewEmployeeSchedule(employeeId, taskId, workstationId, shift);
     }
 
-    @GetMapping("/deleteEmployeeScheduleById")
+    @PostMapping("/deleteEmployeeScheduleById")
     public void deleteEmployeeSchedule(@RequestParam(value = "employeeId", defaultValue = "-1") int employeeId){
         employeeScheduleService.deleteEmployeeSchedule(employeeId);
     }
