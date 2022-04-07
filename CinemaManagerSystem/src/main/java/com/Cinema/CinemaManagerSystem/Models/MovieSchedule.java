@@ -1,4 +1,5 @@
 package com.Cinema.CinemaManagerSystem.Models;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -13,14 +14,17 @@ public class MovieSchedule {
     private int [][]seatOfArrayForMovie;
     private boolean isAvailable;
 
-    public MovieSchedule(int salonId, String movieTime, String movieDate, int movieId, int[][] seatOfArrayForMovie, boolean isAvailable) {
+    public MovieSchedule(int salonId, String movieTime, String movieDate, int movieId, String array, boolean isAvailable) {
+        Gson gson = new Gson();
         this.salonId = salonId;
         this.movieTime = movieTime;
         this.movieDate = movieDate;
         this.movieId = movieId;
-        this.seatOfArrayForMovie = seatOfArrayForMovie;
+        this.seatOfArrayForMovie = gson.fromJson(array, int[][].class);
         this.isAvailable = isAvailable;
     }
+
+    public MovieSchedule(){}
 
     public int getSalonId() {
         return salonId;

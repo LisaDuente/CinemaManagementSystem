@@ -19,6 +19,10 @@ public class MovieService {
         dao.insertNewMovie(name, genre, duration, movieDescription, shortDescription, path);
     }
 
+    public void updateMovie(int id, String name, String genre, String duration, String movieDescription, String shortDescription, String path) {
+        dao.updateMovie(id,name, genre, duration, movieDescription, shortDescription, path);
+    }
+
     public void deleteMovie(int idDelete){
         dao.deleteMovie(idDelete);
     }

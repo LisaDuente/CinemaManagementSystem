@@ -22,10 +22,13 @@ public class MovieScheduleService {
         dao.deleteMovieSchedule(movieId);
     }
 
-    public String downloadOneMovieSchedule(int movieId){
+    public String downloadOneMovieSchedule(int salonID, int movieID, String time, String date){
         Gson gson = new Gson();
-        movieSchedule = dao.downloadOneMovieSchedule(movieId);
-        String movieString = gson.toJson(movieSchedule);
-        return movieString;
+        movieSchedule = dao.downloadOneMovieSchedule(salonID,movieID, time, date);
+        return gson.toJson(movieSchedule);
+    }
+
+    public String updateMovieSchedule(String array, int salonID, int movieID, String time, String date){
+        return dao.updateMovieScheduleById(array, salonID, movieID, time, date);
     }
 }

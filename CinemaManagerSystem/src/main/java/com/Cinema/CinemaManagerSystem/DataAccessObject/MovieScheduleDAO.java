@@ -3,7 +3,11 @@ package com.Cinema.CinemaManagerSystem.DataAccessObject;
 import com.Cinema.CinemaManagerSystem.Models.MovieSchedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Repository
 public class MovieScheduleDAO {
@@ -48,18 +52,25 @@ public class MovieScheduleDAO {
         }
     }
 
+    public String updateMovieScheduleById(String array, int salonID, int movieID, String time, String date){
+        String query = "update movie_schedule set movie_schedule.seatsOfArrayForMovie = ? where salon_ID = ? and movie_ID = ? and movie_time = ? and movie_date = ?";
+        int result = jdcbTemplate.update(query, array, salonID, movieID, time, date);
+        if (result > 0 ){
+            System.out.println("nice");
+        }
+        return "nice mmm nice";
+    }
 
-    public MovieSchedule downloadOneMovieSchedule(int movieId){
-        String query = "SELECT * FROM movie_schedule WHERE movie_ID = ?";
-        return this.jdcbTemplate.queryForObject(query, (rs, rowNum) -> {
-            int[][]arrayEmpty = new int[10][10];
-            return new MovieSchedule(
-                    rs.getInt("salon_ID"),
-                    rs.getString("movie_time"),
-                    rs.getString("movie_date"),
-                    rs.getInt("movie_ID"),
-                    arrayEmpty,
-                    true);
-        }, movieId);
+
+    public MovieSchedule downloadOneMovieSchedule(int salonID, int movieID, String time, String date){
+        String query = "select * from movie_schedule where salon_ID = ? and movie_ID = ? and movie_time = ? and movie_date = ?";
+        return jdcbTemplate.queryForObject(query, (rs, rowNum) -> new MovieSchedule(
+                rs.getInt("salon_ID"),
+                rs.getString("movie_time"),
+                rs.getString("movie_date"),
+                rs.getInt("movie_ID"),
+                rs.getString("seatsOfArrayForMovie"),
+                true
+        ), salonID, movieID, time, date);
     }
 }

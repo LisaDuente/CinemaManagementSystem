@@ -42,6 +42,19 @@ public class MovieDAO {
         }
     }
 
+    public void updateMovie(int id,String name, String genre, String duration, String description, String shortDescription, String path){
+
+        String query = "UPDATE movie SET movie_name = ?, genre = ?, duration = ?, movie_description = ?, " +
+                "short_description = ?,picture_path = ? WHERE movie_id = ?;";
+
+        int result = jdcbTemplate.update(query, name, genre, duration, description,shortDescription,path, id);
+
+        if(result > 0){
+            System.out.println(result + " movie updated in database");
+            this.error = "movie updated in database";
+        }
+    }
+
     /**
      * method to delete a movie from database
      * @param id int for movie_id of movie we want to delete
