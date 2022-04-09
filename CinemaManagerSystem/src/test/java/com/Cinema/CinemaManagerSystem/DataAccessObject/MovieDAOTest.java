@@ -4,13 +4,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovieDAOTest { // Toros
+// Toros
+class MovieDAOTest {
 
+    @Mock
+    JdbcTemplate jdbcTemplateMock;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
     @Test
     void insertNewMovie() {
         //setup
@@ -32,13 +41,7 @@ class MovieDAOTest { // Toros
         Mockito.verify(jdbcTemplateMock).update(query, name, genre, duration, description, shortDescription, path);
     }
 
-    @Mock
-    JdbcTemplate jdbcTemplateMock;
 
-    @BeforeEach
-    void setUp() {
-
-    }
 
     @Test
     void deleteMovie() {
