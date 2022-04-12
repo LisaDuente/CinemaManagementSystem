@@ -10,7 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomerDAOTest { // Toros
+// Toros
+class CustomerDAOTest {
 
     @Mock
     JdbcTemplate jdbcTemplateMock;
@@ -19,7 +20,7 @@ class CustomerDAOTest { // Toros
     CustomerDAO customerDAOMock;
 
     @Mock
-            //int customerID, String customerName, String customerEmail
+    //int customerID, String customerName, String customerEmail
     Customer testCustomer = new Customer(0, "test", "test@test.test");
 
     @BeforeEach
