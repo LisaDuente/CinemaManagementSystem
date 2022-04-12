@@ -19,4 +19,10 @@ public class MovieScheduleViewService {
         ArrayList<MovieScheduleView> arrayList= dao.downloadWholeMovieSchedule();
         return gson.toJson(arrayList);
     }
+
+    public String downloadAllInfoOneMovie(String movieName){
+        Gson gson = new Gson();
+        ArrayList<MovieScheduleView> arrayList= dao.downloadAllInfoForOneMovie(movieName);
+        return gson.toJson(arrayList);
+    }
 }
