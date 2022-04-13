@@ -17,6 +17,10 @@ public class EmployeeService {
     Employee employee;
     ArrayList<Employee> employees;
 
+    public void setEmployeeDAO(EmployeeDAO employeeDAO) {
+        this.employeeDAO = employeeDAO;
+    }
+
     /**
      * Sends information to DAO class for inserting one new Employee
      *
