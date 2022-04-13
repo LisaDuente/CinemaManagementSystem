@@ -7,15 +7,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeScheduleService {
+
     @Autowired
     EmployeeScheduleDAO employeeScheduleDAO;
     EmployeeSchedule employeeSchedule;
 
-    public void insertNewEmployeeSchedule(int employeeId, int taskId, int workstationId, String shift){
+    /**
+     * Sends information to DAO class for inserting new Employee Schedule.
+     *
+     * @param employeeId
+     * @param taskId
+     * @param workstationId
+     * @param shift
+     */
+    public void insertNewEmployeeSchedule(int employeeId, int taskId, int workstationId, String shift) {
         employeeScheduleDAO.insertNewEmployeeSchedule(employeeId, taskId, workstationId, shift);
     }
 
-    public void deleteEmployeeSchedule(int employeeId){
+    /**
+     * Sends information to DAO class for deleting Employee schedule, based on employee ID.
+     *
+     * @param employeeId
+     */
+    public void deleteEmployeeSchedule(int employeeId) {
         employeeScheduleDAO.deleteEmployeeSchedule(employeeId);
     }
 }
