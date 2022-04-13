@@ -10,6 +10,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Data access object for employee workplan view in database
+ */
 @Repository
 public class EmployeeWorkplanDAO {
     @Autowired
@@ -21,6 +24,10 @@ public class EmployeeWorkplanDAO {
         this.error = "no";
     }
 
+    /**
+     * downloads the whole  employee workplan view
+     * @return ArrayList<EmployeeWorkplan>
+     */
     public ArrayList<EmployeeWorkplan> downloadEmployeeWorkplan(){
         String query = "SELECT * FROM employee_workplan";
         ArrayList<EmployeeWorkplan> workplan = new ArrayList<>();
@@ -35,15 +42,17 @@ public class EmployeeWorkplanDAO {
                     true);
             workplan.add(employeeWorkplan);
         }
-        workplan.sort(Comparator.comparing(EmployeeWorkplan::getEmployeeName));
+        workplan.sort(Comparator.comparing(EmployeeWorkplan::getShift));
 
         return workplan;
     }
 
+    //for testing purpose
     public String getError(){
         return error;
     }
 
+    //for testing purpose
     public void setError(String error){
         this.error = error;
     }

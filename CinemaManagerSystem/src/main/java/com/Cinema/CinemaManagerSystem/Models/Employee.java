@@ -1,5 +1,8 @@
 package com.Cinema.CinemaManagerSystem.Models;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 public class Employee {  // Toros
 
     private int employeeID;

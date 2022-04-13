@@ -1,7 +1,9 @@
 package com.Cinema.CinemaManagerSystem.Models;
 
-import java.util.Arrays;
+import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+@Component
 public class Salon { // Toros || Erkan
     int salonId;
     int cinemaId;

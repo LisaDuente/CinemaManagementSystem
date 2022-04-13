@@ -80,4 +80,5 @@ public class MovieScheduleService {
         ArrayList<MovieSchedule> arrayList = dao.downloadWholeMovieSchedule();
         return gson.toJson(arrayList);
     }
+
 }

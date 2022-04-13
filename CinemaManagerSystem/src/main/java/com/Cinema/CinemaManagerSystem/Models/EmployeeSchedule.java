@@ -1,5 +1,8 @@
 package com.Cinema.CinemaManagerSystem.Models;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmployeeSchedule {
     private int employeeId;
     private int taskId;

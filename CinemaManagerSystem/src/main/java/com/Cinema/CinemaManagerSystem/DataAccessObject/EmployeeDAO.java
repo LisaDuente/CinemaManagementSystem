@@ -1,7 +1,6 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
 import com.Cinema.CinemaManagerSystem.Models.Employee;
-import com.Cinema.CinemaManagerSystem.Models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -10,10 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Data access object for employee table
+ */
 @Repository
 public class EmployeeDAO {  // Toros
     @Autowired
@@ -25,8 +26,13 @@ public class EmployeeDAO {  // Toros
         this.jdbcTemplate = new JdbcTemplate();
     }
 
-    // for reference:
-    // int employeeID, String employeeName, String employeeTel, String employeeEmail
+    /**
+     * inserts new employee in database
+     * @param employeeID int
+     * @param employeeName String
+     * @param employeeTel String
+     * @param employeeEmail String
+     */
     public void insertNewEmployee(int employeeID, String employeeName, String employeeTel, String employeeEmail) {
 
         //should we insert null here to generate a new id with auto_increment in MySQL? Salon_ID is a varchar though.
@@ -40,6 +46,10 @@ public class EmployeeDAO {  // Toros
         }
     }
 
+    /**
+     * deletes an employee from database by ID
+     * @param employeeID int
+     */
     public void deleteEmployeeByID(int employeeID) {
         String query = "DELETE FROM employees WHERE employee_ID = ?;";
         int result = jdbcTemplate.update(query, employeeID);
@@ -50,6 +60,11 @@ public class EmployeeDAO {  // Toros
         }
     }
 
+    /**
+     * downloads one employee by name
+     * @param employeeName String
+     * @return Employee class
+     */
     public Employee downloadOneEmployeeByName (String employeeName) {
         String query = "SELECT * FROM employees WHERE employee_name = ?;";
         Employee employee = this.jdbcTemplate.queryForObject(query, new RowMapper<Employee>() {
@@ -69,7 +84,11 @@ public class EmployeeDAO {  // Toros
         return employee;
     }
 
-    //TODO: something is wrong error code 500
+    /**
+     * downloads one employee by ID
+     * @param employeeID int
+     * @return
+     */
     public Employee downloadOneEmployeeByID(int employeeID) {
         String query = "SELECT * FROM employees WHERE employee_ID = ?;";
         Employee employee = this.jdbcTemplate.queryForObject(query, new RowMapper<Employee>() {
@@ -87,6 +106,10 @@ public class EmployeeDAO {  // Toros
         return employee;
     }
 
+    /**
+     * downloads the whole employee table
+     * @return ArrayList<Employee>
+     */
     public ArrayList<Employee> downloadAllEmployees(){
         String query = "SELECT * FROM employees";
         ArrayList<Employee> employees = new ArrayList<>();
@@ -101,16 +124,17 @@ public class EmployeeDAO {  // Toros
                     );
             employees.add(employee);
         }
-        //employees.sort(Comparator.comparing(Employee::getName));
 
         return employees;
     }
 
-    // necessary ??
-    //public ArrayList<Employee> downloadAllEmployees(){
-    //
-    //}
-
+    /**
+     * updates a specified employee in the database.
+     * @param id int
+     * @param name String
+     * @param tel String
+     * @param mail String
+     */
     public void updateEmployee(int id,String name, String tel, String mail){
 
         String query = "UPDATE employees SET employee_name = ?, employee_tel = ?, employee_email = ? WHERE employee_ID = ?;";
@@ -122,11 +146,11 @@ public class EmployeeDAO {  // Toros
             this.error = "employee updated in database";
         }
     }
-
+    //for testing purpose
     public String getError() {
         return error;
     }
-
+    //for testing purpose
     public void setError(String error) {
         this.error = error;
     }

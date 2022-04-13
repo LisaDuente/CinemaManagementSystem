@@ -1,7 +1,9 @@
 package com.Cinema.CinemaManagerSystem.Models;
 
 import com.Cinema.CinemaManagerSystem.DataAccessObject.MovieScheduleDAO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MovieScheduleView {
 
     int salon;

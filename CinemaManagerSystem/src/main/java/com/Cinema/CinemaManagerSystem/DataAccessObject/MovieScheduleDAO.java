@@ -1,6 +1,5 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
-import com.Cinema.CinemaManagerSystem.Models.Employee;
 import com.Cinema.CinemaManagerSystem.Models.MovieSchedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Data access object for MovieSchedule table in database
+ */
 @Repository
 public class MovieScheduleDAO {
     @Autowired
@@ -53,6 +55,12 @@ public class MovieScheduleDAO {
         }
     }
 
+    /**
+     * deletes one specific entry in table MovieSchedule
+     * @param salonID int
+     * @param movieTime String
+     * @param movieDate String
+     */
     public void deleteMovieSchedule(int salonID, String movieTime, String movieDate){
         String query = "DELETE FROM movie_schedule WHERE salon_ID = ? AND movie_time = ? AND movie_date = ?";
         int result = jdbcTemplate.update(query, salonID,movieTime,movieDate);
@@ -63,6 +71,15 @@ public class MovieScheduleDAO {
         }
     }
 
+    /**
+     * updates one entry in MovieSchedule by ID
+     * @param array String
+     * @param salonID int
+     * @param movieID int
+     * @param time String
+     * @param date String
+     * @return String
+     */
     public String updateMovieScheduleById(String array, int salonID, int movieID, String time, String date){
         String query = "update movie_schedule set movie_schedule.seatsOfArrayForMovie = ? where salon_ID = ? and movie_ID = ? and movie_time = ? and movie_date = ?";
         int result = jdbcTemplate.update(query, array, salonID, movieID, time, date);
@@ -72,7 +89,14 @@ public class MovieScheduleDAO {
         return "nice mmm nice";
     }
 
-
+    /**
+     * gets one entry from movieSchedule table
+     * @param salonID int
+     * @param movieID int
+     * @param time String
+     * @param date String
+     * @return MovieSchedule class
+     */
     public MovieSchedule downloadOneMovieSchedule(int salonID, int movieID, String time, String date){
         String query = "select * from movie_schedule where salon_ID = ? and movie_ID = ? and movie_time = ? and movie_date = ?";
         return jdbcTemplate.queryForObject(query, (rs, rowNum) -> new MovieSchedule(
@@ -85,6 +109,10 @@ public class MovieScheduleDAO {
         ), salonID, movieID, time, date);
     }
 
+    /**
+     * gets the whole movieSchedule table
+     * @return ArrayList<MovieSchedule>
+     */
     public ArrayList<MovieSchedule> downloadWholeMovieSchedule(){
         String query = "SELECT * FROM movie_schedule;";
         ArrayList<MovieSchedule> movie_schedule = new ArrayList<>();
