@@ -15,6 +15,11 @@ public class EmployeeService { // Toros
     Employee employee;
     ArrayList<Employee> employees;
 
+    //Just for testing
+    public void setEmployeeDAO(EmployeeDAO employeeDAO) {
+        this.employeeDAO = employeeDAO;
+    }
+
     // for reference:
     // int employeeID, String employeeName, String employeeTel, String employeeEmail
     public void insertNewEmployee(int employeeID, String employeeName, String employeeTel, String employeeEmail) {

@@ -12,7 +12,14 @@ public class MovieScheduleController {
 
     public MovieScheduleController(MovieScheduleService movieScheduleService) {
         this.movieScheduleService = movieScheduleService;}
-
+    /**
+     * Sends request to insert a new movieSchedule to database
+     * @param salonId int for salonID of salon
+     * @param movieTime time when the movie starts
+     * @param movieDate date when the movie is playing
+     * @param movieId what movie is playing
+     * @param seatsData seatsOfArrayForMovie, how many seats in the salon
+     */
     @PostMapping("/insertMovieSchedule")
     public void insertMovieSchedule(@RequestParam(value = "salonId", defaultValue = "NoSalonId") int salonId,
                                    @RequestParam(value = "movieTime", defaultValue = "NoMovieTime") String movieTime,
@@ -21,12 +28,17 @@ public class MovieScheduleController {
                                    @RequestParam(value = "seatsData") String seatsData){
         movieScheduleService.insertMovieSchedule(salonId, movieTime, movieDate, movieId, seatsData);
     }
-
+    /**
+     * Sends request to delete a movie from database
+     * @param movieId int for movieID of movie
+     */
     @GetMapping("/deleteMovieSchedule")
     public void deleteMovieSchedule(@RequestParam(value = "movieId", defaultValue = "-1") int movieId){
         movieScheduleService.deleteMovieSchedule(movieId);
     }
-
+    /**
+     * Don't know that to comment
+     */
     @DeleteMapping("/deleteMovieAllParameters")
     public void deleteMovieAllParameters(@RequestParam(value = "salonID", defaultValue = "-1")int salonID,
                                          @RequestParam(value = "movieTime", defaultValue = "-1")String movieTime,
@@ -34,7 +46,14 @@ public class MovieScheduleController {
         this.movieScheduleService.deleteMovieScheduleAllParameters(salonID,movieTime,movieDate);
 
     }
-
+    /**
+     * Sends request to update movieSchedule in database
+     * @param array update seatArrayOfMovie, updates seats in salon
+     * @param salonID int salonID of salon
+     * @param movieID int movieID of movie
+     * @param time time when the movie starts
+     * @param date date when the movie will play
+     */
     @PostMapping("/updateMovieSchedule")
     public String updateMovieSchedule(
             @RequestParam("seats") String array,
@@ -45,7 +64,13 @@ public class MovieScheduleController {
     ){
         return movieScheduleService.updateMovieSchedule(array, salonID, movieID, time, date);
     }
-
+    /**
+     * Sends request to download one movieSchedule from database
+     * @param salonID int for salonID of salon
+     * @param movieID int for movieID of movie
+     * @param time time when the movie starts
+     * @param date date when the movie is playing
+     */
     @GetMapping("/downloadOneMovieSchedule")
     public String downloadOneMovieSchedule(
             @RequestParam("salonID") int salonID,
@@ -54,7 +79,10 @@ public class MovieScheduleController {
             @RequestParam("date") String date){
         return movieScheduleService.downloadOneMovieSchedule(salonID, movieID, time,date);
     }
-
+    /**
+     * Sends request to download all movieSchedule from database
+     * and display it in a list
+     */
     @GetMapping("/downloadWholeMovieSchedule")
     public String downloadWholeMovieSchedule(){
         return movieScheduleService.downloadWholeMovieSchedule();
