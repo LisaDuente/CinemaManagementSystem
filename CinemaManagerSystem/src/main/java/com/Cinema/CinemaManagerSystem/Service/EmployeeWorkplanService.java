@@ -10,15 +10,18 @@ import java.util.ArrayList;
 
 @Service
 public class EmployeeWorkplanService {
+
     @Autowired
     EmployeeWorkplanDAO dao;
     ArrayList<EmployeeWorkplan> employeeWorkplan;
 
-    public String downloadEmployeeWorkplan(){
+    /**
+     * @return Employee workplan from a gson String, sends it to DAO class.
+     */
+    public String downloadEmployeeWorkplan() {
         employeeWorkplan = dao.downloadEmployeeWorkplan();
         Gson gson = new Gson();
         String employeeWorkplanListString = gson.toJson(employeeWorkplan);
         return employeeWorkplanListString;
     }
-
 }

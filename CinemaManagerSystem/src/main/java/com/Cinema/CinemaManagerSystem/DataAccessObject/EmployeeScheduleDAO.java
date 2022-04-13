@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Data Access Object for employeeSchedule in the database
+ */
 @Repository
 public class EmployeeScheduleDAO {
     @Autowired
@@ -15,9 +18,15 @@ public class EmployeeScheduleDAO {
         this.jdcbTemplate = new JdbcTemplate();
     }
 
+    /**
+     * insert a new row in employeeSchedule
+     * @param employeeId int
+     * @param taskId int
+     * @param workstationId int
+     * @param shift String
+     */
     public void insertNewEmployeeSchedule(int employeeId, int taskId, int workstationId, String shift){
 
-        //should we insert null here to generate a new id with auto_increment in MySQL?
         String query = "INSERT INTO employee_schedule VALUES(?,?,?,?);";
 
         int result = jdcbTemplate.update(query, employeeId, taskId, workstationId, shift);
@@ -28,6 +37,10 @@ public class EmployeeScheduleDAO {
         }
     }
 
+    /**
+     * deletes a row from employeeSchedule by employee ID
+     * @param employeeId int
+     */
     public void deleteEmployeeSchedule(int employeeId){
         String query = "DELETE FROM employee_schedule WHERE employee_ID = ?";
         int result = jdcbTemplate.update(query, employeeId);

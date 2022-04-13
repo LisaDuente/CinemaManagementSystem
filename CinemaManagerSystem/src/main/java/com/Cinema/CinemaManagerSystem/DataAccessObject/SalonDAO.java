@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * data access object for salon table and salon_information
+ */
 @Repository
 public class SalonDAO { // Toros || ERKAN
     @Autowired
