@@ -1,5 +1,8 @@
 package com.Cinema.CinemaManagerSystem.Models;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmployeeWorkplan {
     private String employeeName;
     private String workstation;

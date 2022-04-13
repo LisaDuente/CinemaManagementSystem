@@ -1,6 +1,7 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
 import com.Cinema.CinemaManagerSystem.Models.Movie;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -136,6 +137,22 @@ public class MovieDAO {
             return movie;
         });
         return temp;
+    }
+
+    public String downloadMovieByName(String name){
+        Gson gson = new Gson();
+        String query = "SELECT * FROM movie WHERE movie_name = ?";
+        Movie temp = this.jdcbTemplate.queryForObject(query, (rs, rowNum) -> new Movie(
+                rs.getInt("movie_ID"),
+                rs.getString("movie_name"),
+                rs.getString("genre"),
+                rs.getString("duration"),
+                rs.getString("movie_description"),
+                rs.getString("short_description"),
+                rs.getString("picture_path"),
+                true
+        ), name);
+        return gson.toJson(temp);
     }
 
 

@@ -47,4 +47,8 @@ public class MovieService {
         return gson.toJson(movie);
     }
 
+    public String downloadMovieByName(String name){
+        return dao.downloadMovieByName(name);
+    }
+
 }
