@@ -14,7 +14,9 @@ public class EmployeeWorkplanController {
     public EmployeeWorkplanController(EmployeeWorkplanService employeeWorkplanService){
         this.employeeWorkplanService = employeeWorkplanService;
     }
-
+    /**
+     * Sends request to download an employee view from database
+     */
     @GetMapping("/downloadEmployeeWorkplan")
     public String downloadAllMovies(){
         return employeeWorkplanService.downloadEmployeeWorkplan();

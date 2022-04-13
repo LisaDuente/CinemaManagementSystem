@@ -15,7 +15,13 @@ public class EmployeeScheduleController {
     public EmployeeScheduleController(EmployeeScheduleService employeeScheduleService){
         this.employeeScheduleService = employeeScheduleService;
     }
-
+    /**
+     * Sends request to insert a new employeeSchedule to database
+     * @param employeeId int for employeeID of employee we want to register in employeeSchedule
+     * @param taskId task for employee
+     * @param workstationId workstation for employee
+     * @param shift what time the shift start and ends
+     */
     @PostMapping("/insertEmployeeSchedule")
     public void insertEmployeeSchedule(@RequestParam(value = "employeeId", defaultValue = "-1") int employeeId,
                                        @RequestParam(value = "taskId", defaultValue = "-1") int taskId,
@@ -24,6 +30,10 @@ public class EmployeeScheduleController {
         employeeScheduleService.insertNewEmployeeSchedule(employeeId, taskId, workstationId, shift);
     }
 
+    /**
+     * Sends request to delete an employee from employeeSchedule from database
+     * @param employeeId int for employeeID of employee we want to delete from employeeSchedule
+     */
     @PostMapping("/deleteEmployeeScheduleById")
     public void deleteEmployeeSchedule(@RequestParam(value = "employeeId", defaultValue = "-1") int employeeId){
         employeeScheduleService.deleteEmployeeSchedule(employeeId);
