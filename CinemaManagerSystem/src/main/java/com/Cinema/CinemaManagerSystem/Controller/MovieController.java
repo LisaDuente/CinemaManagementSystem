@@ -58,4 +58,9 @@ public class MovieController {
     public String downloadMostRecent(){
         return movieService.downloadMostRecent();
     }
+
+    @GetMapping("/downloadMovieByName")
+    public String downloadMovieByName(@RequestParam(value = "name", defaultValue = "")String name){
+        return movieService.downloadMovieByName(name);
+    }
 }

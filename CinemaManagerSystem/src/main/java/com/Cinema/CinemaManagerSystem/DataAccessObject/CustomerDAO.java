@@ -1,6 +1,6 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
-import com.Cinema.CinemaManagerSystem.Models.Customer;
+import com.Cinema.CinemaManagerSystem.Models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
