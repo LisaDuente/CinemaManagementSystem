@@ -1,16 +1,17 @@
 package com.Cinema.CinemaManagerSystem.DataAccessObject;
 
-import com.Cinema.CinemaManagerSystem.Models.MovieSchedule;
 import com.Cinema.CinemaManagerSystem.Models.MovieScheduleView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Data acess object for the movieScheduleView in database
+ */
 @Repository
 public class MovieScheduleViewDAO {
         @Autowired
@@ -20,7 +21,11 @@ public class MovieScheduleViewDAO {
             this.jdbcTemplate = new JdbcTemplate();
         }
 
-        public ArrayList<MovieScheduleView> downloadWholeMovieSchedule(){
+    /**
+     * gets the whole view from the database
+     * @return ArrayList<MovieScheduleView>
+     */
+    public ArrayList<MovieScheduleView> downloadWholeMovieSchedule(){
             String query = "SELECT * FROM moviescheduleview;";
             ArrayList<MovieScheduleView> movieScheduleViews = new ArrayList<>();
             List<Map<String,Object>> rows = jdbcTemplate.queryForList(query);
@@ -38,7 +43,12 @@ public class MovieScheduleViewDAO {
             return movieScheduleViews;
         }
 
-        public ArrayList<MovieScheduleView> downloadAllInfoForOneMovie(String movieName){
+    /**
+     * gets all entries for one specific movie from MovieScheduleView by name
+     * @param movieName String
+     * @return ArrayList<MovieScheduleView>
+     */
+    public ArrayList<MovieScheduleView> downloadAllInfoForOneMovie(String movieName){
             String query = "SELECT * FROM moviescheduleview WHERE Movie = ?;";
             ArrayList<MovieScheduleView> movieScheduleViews = new ArrayList<>();
             List<Map<String,Object>> rows = jdbcTemplate.queryForList(query, movieName);

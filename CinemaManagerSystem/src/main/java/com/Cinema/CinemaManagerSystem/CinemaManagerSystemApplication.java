@@ -45,7 +45,7 @@ public class CinemaManagerSystemApplication {
 		System.out.println(res);
 		int x = dao.getLatestReservationID();
 		System.out.println(x);
-		
+
 		 */
 
 	}

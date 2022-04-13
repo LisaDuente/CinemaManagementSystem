@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-//everyone needs to create a database with User + Pass from properties,
-//don't forget to set all privileges
+
+/**
+ * Data access object for movie table in database
+ */
 @Repository
 public class MovieDAO {
     @Autowired
@@ -42,6 +44,16 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * updates a movie in database by ID
+     * @param id int
+     * @param name String
+     * @param genre String
+     * @param duration String
+     * @param description String
+     * @param shortDescription String
+     * @param path String (url for the picture)
+     */
     public void updateMovie(int id,String name, String genre, String duration, String description, String shortDescription, String path){
 
         String query = "UPDATE movie SET movie_name = ?, genre = ?, duration = ?, movie_description = ?, " +
@@ -69,7 +81,11 @@ public class MovieDAO {
         }
     }
 
-
+    /**
+     * gets one movie from the database by id
+     * @param id int
+     * @return Movie class
+     */
     public Movie downloadOneMovie(int id){
 
         String query = "SELECT * FROM movie WHERE movie_id = ?";
@@ -138,11 +154,11 @@ public class MovieDAO {
         return temp;
     }
 
-
+    //for testing purpose
     public String getError() {
         return error;
     }
-
+    //for testing purpose
     public void setError(String error) {
         this.error = error;
     }
