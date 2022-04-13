@@ -15,8 +15,6 @@ public class CustomerService { // Toros
     Customer customer;
     ArrayList<Customer> customers;
 
-    // for reference:
-    // int customerID, String customerName, String customerEmail
     public void insertNewCustomer(int customerID, String customerName, String customerEmail) {
         customerDAO.insertNewCustomer(customerID, customerName, customerEmail);
     }
@@ -32,10 +30,6 @@ public class CustomerService { // Toros
         return customerString;
     }
 
-    // necessary ??
-    //public ArrayList<Customer> downloadAllCustomers(){
-    //
-    //}
 }
 
 
